@@ -1,26 +1,25 @@
 <template>
-    <a class="header-link">
-        {{name}}
-    </a>
+    <router-link :to="path">
+        <span class="header-link">{{name}}</span>
+    </router-link>
 </template>
 
 <script>
 export default {
     name: 'HeaderLink',
-    props: {name: String}
+    props: {name: String, path: String}
 }
 </script>
 
 <style>
     .header-link{
         position: relative;
-        cursor: pointer;
-        font-family: 'Lobster', cursive;
+        font-family: var(--main-font);
         font-size: 24px;
         font-weight: normal;
         color: white;
 
-        margin-right: 15px;
+        margin: 0 15px 0 0;
     }
 
     .header-link:after{
