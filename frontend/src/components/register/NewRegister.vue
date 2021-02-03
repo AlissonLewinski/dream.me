@@ -26,6 +26,7 @@ import { VueEditor } from 'vue2-editor'
 
 export default {
     name: 'NewRegister',
+    props: {loadRegisters: Function},
     components: { VueEditor },
     data: function() {
         return {
@@ -60,6 +61,7 @@ export default {
                     })
                     this.isVisible = false
                     this.reset()
+                    this.loadRegisters()
                 })
         }
     }
@@ -70,7 +72,7 @@ export default {
 <style>
 
     .new-register-container {
-        margin-top: 20px;
+        margin: 20px 0px 20px 0px;
         width: 900px;
         max-width: 95vw;
     }
@@ -114,6 +116,10 @@ export default {
         position: relative;
         padding: 20px 20px 0 20px;
         border: solid 3px var(--main-color);
+    }
+
+    .new-register input {
+        width: 300px;
     }
 
     .new-register-close {
