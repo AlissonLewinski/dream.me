@@ -9,11 +9,11 @@
 
             <div class="new-notebook-icon">
                 <input @change="iconToBase64" v-show="false" type="file" accept="image/*">
-                <button @click="iconInputClick">Selecionar Ícone</button>
+                <button class="dm-btn" @click="iconInputClick">Selecionar Ícone</button>
                 <img :src="notebook.icon" width="130">
             </div>
 
-            <button @click="saveNotebook">Enviar</button>
+            <button class="dm-btn" @click="saveNotebook">Enviar</button>
         </div>
     </div>
 </template>
@@ -57,7 +57,6 @@ export default {
         },
 
         saveNotebook() {
-            console.log(baseApiUrl);
             axios.post(`${baseApiUrl}/notebooks`, this.notebook)
                 .then(() => {
                     this.$toast.open({
@@ -86,36 +85,12 @@ export default {
         max-width: 95vw;
         overflow: hidden;
     }
-
-    .new-notebook label {
-        font-size: 18px;
-        font-family: var(--main-font);
-        color: var(--main-color);
-    }
-
-    .new-notebook button {
-        font-size: 18px;
-        font-family: var(--main-font);
-        color: var(--main-color);
-        border: solid 3px var(--main-color);
-        background-color: unset;
-
-        cursor: pointer;
-        width: 100%;
-        padding: 8px 0 8px 0;
-        margin-bottom: 20px;
-    }
-
+    
     .new-notebook-name {
         margin-bottom: 15px;
         display: flex;
         flex-direction: column;
-    }
-
-    .new-notebook-name input {
-        border: solid 3px var(--main-color);
-        padding: 10px;
-    }
+    } 
 
     .new-notebook-icon {
         display: flex;
