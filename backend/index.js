@@ -1,8 +1,11 @@
 const app = require('express')()
 const consign = require('consign')
 const db = require('./config/db')
+const enforce = require('express-sslify')
 
 app.db = db
+
+app.use(enforce.HTTPS({ trustProtoHeader: true }))
 
 consign()
     .include('./config/passport.js')
