@@ -5,20 +5,24 @@
                 <h1>Dream.me</h1> <img src="@/assets/moon.svg" width="30" height="30">
             </span>
         </router-link>
+
+        <UserDropdown v-if="!hideUserDropdown"/>
         
-        <div class="header-links">
-            <Header-link name="Meus cadernos" path="/cadernos"/>
-            <Header-link name="Novo caderno" path="/cadernos/novo"/>
-        </div>
+        <router-link v-else to="/entrar">
+            <span class="header-login">Entrar</span>
+        </router-link>
     </header>
 </template>
 
 <script>
-import HeaderLink from './HeaderLink.vue'
+import UserDropdown from './UserDropdown.vue'
 
 export default {
     name: 'Header',
-    components: {HeaderLink}
+    components: {UserDropdown},
+    props: {
+        hideUserDropdown: Boolean
+    }
 }
 </script>
 
@@ -28,10 +32,8 @@ export default {
         background-color: var(--main-color);
         display: flex;
         align-items: center;
-    }
-
-    .header a {
-        text-decoration: none;
+        justify-content: space-between;
+        font-family: var(--main-font);
     }
 
     .header-logo {
@@ -47,17 +49,17 @@ export default {
         padding-bottom: 2px;
         font-weight: normal;
         font-size: 36px;
-        font-family: var(--main-font);
         color: white;
     }
 
     .header-logo img {
         padding-left: 15px;
     }
-    
-    .header-links {
-        margin-left: 20px;
-        display: flex;
-        flex-direction: row;
+
+    .header-login {
+        font-size: 1.3rem;
+        color: white;
+        margin-right: 20px;
     }
+
 </style>

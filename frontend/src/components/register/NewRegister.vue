@@ -1,32 +1,38 @@
 <template>
-    <div class="new-register-container">
+    <div>
+        <button @click="toggleModal" id="modal-open" class="dm-btn new-register-open-button">Novo Registro</button>
 
-        <button @click="toggleVisibility" v-show="!isVisible" class="dm-btn">Novo Registro</button>
+        <modal name="new-register-modal" :scrollable="true"  :adaptive="true" width="1200px" height="auto">
 
-        <div v-show="isVisible" class="new-register">
-            <button @click="toggleVisibility" class="new-register-close">
-                <img src="@/assets/close.svg" height="25" width="25" alt="Fechar">
-            </button>
+            <div class="new-register-modal-close">
 
-            <label for="register-name">Título: </label>
-            <input v-model="register.title" id="register-name" type="text">
+                <button @click="toggleModal" id="modal-close" class="new-register-close">
+                    <img src="@/assets/close.svg" id="modal-close" height="25" width="25" alt="Fechar">
+                </button>
 
-            <VueEditor v-model="register.content" class="new-register-editor" />
+                <label for="register-name">Título: </label>
+                <input v-model="register.title" id="register-name" type="text">
 
-            <button @click="save" class="dm-btn">Salvar</button>
-        </div>
+                <VueEditor :editorOptions="editorSettings" v-model="register.content" class="new-register-editor" />
+
+                <button @click="save" class="dm-btn">Salvar</button>
+                
+            </div>
+        </modal>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import { VueEditor, Quill } from 'vue2-editor'
+import ImageResize from 'quill-image-resize-vue';
+import { baseApiUrl, showError } from '@/global.js'
 
-import { baseApiUrl } from '@/global.js'
-import { VueEditor } from 'vue2-editor'
+Quill.register("modules/imageResize", ImageResize)
 
 export default {
     name: 'NewRegister',
-    props: {loadRegisters: Function},
+    props: {id_notebook: Number, loadRegisters: Function},
     components: { VueEditor },
     data: function() {
         return {
@@ -34,10 +40,24 @@ export default {
                 title: '',
                 content: ''
             },
-            isVisible: false
+            editorSettings: {
+                modules: {
+                    imageResize: {},
+                }
+            }
         }
     },
     methods: {
+
+        toggleModal(e) {
+            console.log(e.target.id);
+            if(e.target.id === 'modal-close') {
+                this.$modal.hide('new-register-modal')
+            } else {
+                this.$modal.show('new-register-modal')
+            }
+        },
+
         toggleVisibility() {
             this.isVisible = !this.isVisible
             this.reset()
@@ -51,8 +71,11 @@ export default {
         },
         
         save() {
-            axios.post(`${baseApiUrl}/registers`, this.register)
+            this.$store.commit('setLoading', true)
+            axios.post(`${baseApiUrl}/registers`, {...this.register, id_notebook: this.id_notebook})
                 .then(() => {
+                    this.$store.commit('setLoading', false)
+                    this.$modal.hide('new-register-modal')
                     this.$toast.open({
                         message: 'Registro salvo com sucesso',
                         position: 'top-right',
@@ -63,6 +86,10 @@ export default {
                     this.reset()
                     this.loadRegisters()
                 })
+                .catch(res => {
+                    showError(res)
+                    this.$store.commit('setLoading', false)
+                })
         }
     }
 
@@ -71,10 +98,8 @@ export default {
 
 <style>
 
-    .new-register-container {
-        margin: 20px 0px 20px 0px;
-        width: 900px;
-        max-width: 95vw;
+    .new-register-modal-close {
+        padding: 25px;
     }
 
     #register-name {
@@ -102,24 +127,17 @@ export default {
         }
     }
 
-    .ql-toolbar {
-        border: solid 3px var(--main-color) !important;
-    }
-
-    .ql-container {
-        border-right: solid 3px var(--main-color) !important;
-        border-left: solid 3px var(--main-color) !important;
-        border-bottom: solid 3px var(--main-color) !important;
-    }
-
-    .new-register {
-        position: relative;
+    [name="new-register-modal"] {
         padding: 20px 20px 0 20px;
         border: solid 3px var(--main-color);
     }
 
     .new-register input {
         width: 300px;
+    }
+
+    .new-register-container .dm-btn {
+        width: 100%;
     }
 
     .new-register-close {
