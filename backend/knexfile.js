@@ -5,7 +5,8 @@ module.exports = {
 	connection: `${DATABASE_URL}?ssl=true`,
 	pool: {
 		min: 2,
-		max: 10
+		max: 10,
+		propagateCreateError: false
 	},
 	ssl: true
 };
