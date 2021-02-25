@@ -1,4 +1,4 @@
-const DATABASE_URL = process.env.DATABASE_URL
+const DATABASE_URL = process.env.DATABASE_URL || require('./.env').DATABASE_URL
 
 module.exports = {
 	client: 'postgresql',
