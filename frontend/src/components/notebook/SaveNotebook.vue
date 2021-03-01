@@ -49,7 +49,6 @@ export default {
     methods: {
 
         toggleModal(e) {
-            console.log(e.target.id);
             if(e.target.id === 'modal-close') {
                 this.$modal.hide('save-notebook-modal')
             } else {

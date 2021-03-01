@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 export const userKey = '__dream_me_user'
-export const baseApiUrl = process.env.VUE_APP_API_URL || 'http://localhost:3000'
+export const baseApiUrl = process.env.VUE_APP_API_URL || require('../.env').API_URL
 
 export function showError(e) {
     if(e && e.response && e.response.data) {

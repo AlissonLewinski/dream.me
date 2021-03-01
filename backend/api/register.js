@@ -96,6 +96,7 @@ module.exports = app => {
             const notebook = await app.db.select('notebook.id', 'notebook.name')
                 .from('notebook')
                 .innerJoin('register', {'register.id_notebook': 'notebook.id'})
+                .where({'register.id': register.id})
                 .first() 
             
             if(notebook) {
