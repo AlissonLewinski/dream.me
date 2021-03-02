@@ -68,7 +68,9 @@ export default {
     --main-color: #8257E6;
     --white: #fff;
     --red: #E83F5B;
-    --text: #2E384D;
+    --green: #4CD62B;
+    --text: #666666;
+    --title: #2E384D;
   
     --main-font: "Inter", sans-serif;
     --secondary-font: "Open Sans", sans-serif;
@@ -107,14 +109,19 @@ body {
 .v-toast-text {
     font-size: 22px;
     font-family: var(--main-font);
+    font-weight: 600;
 }
 
-input {
+.dm-input {
     box-sizing: border-box;
-    border: solid 3px var(--main-color);
-    border-radius: 10px;
-    padding: 10px;
+
+    border: solid 2px var(--main-color);
+    border-radius: 2px;
     outline: none;
+    
+    padding: 10px;
+
+    font-family: var(--main-font);
 }
 
 label {
@@ -129,6 +136,7 @@ a {
 
 .dm-btn {
     font-size: 18px;
+    font-weight: 600;
     font-family: var(--main-font);
     color: white;
     border: none;
@@ -139,10 +147,6 @@ a {
 
     cursor: pointer;
     padding: 8px 4px 8px 4px;
-}
-
-.dm-btn:hover {
-  padding: 10px 6px 10px 6px;
 }
 
 .modal-close-button {

@@ -18,9 +18,7 @@ export default {
 
 <style>
     .notebook-item-container {
-        margin: 0.8rem 1rem;
         position: relative;
-        display: inline-block;
 
         height: 14rem;
         width: 11rem;

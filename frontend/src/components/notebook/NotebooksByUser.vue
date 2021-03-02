@@ -2,8 +2,12 @@
     <div class="notebooks-page-container">
         <h1>Meus cadernos</h1>
 
-        <section class="notebooks-container">
-            <NotebookItem v-for="nb in notebooks" :notebook="nb" :key="nb.id"/>
+        <section class="notebooks-list-container">
+            <div class="notebooks-list-items">
+                <NotebookItem v-for="nb in notebooks" :notebook="nb" :key="nb.id"/>
+
+                <SaveNotebook />
+            </div>
         </section>
     </div>
 </template>
@@ -13,12 +17,11 @@ import axios from 'axios'
 
 import { baseApiUrl } from '@/global.js'
 import NotebookItem from './NotebookItem.vue'
-//import SaveNotebook from './SaveNotebook.vue'
+import SaveNotebook from './SaveNotebook.vue'
 
 export default {
     name: 'NotebooksByUser',
-    //components: {NotebookItem, SaveNotebook},
-    components: {NotebookItem},
+    components: {NotebookItem, SaveNotebook},
     data: function() {
         return {
             notebooks: [],
@@ -90,11 +93,20 @@ export default {
         font-size: 2rem;
         font-weight: 600;
         font-family: var(--main-font);
-        color: var(--text);
+        color: var(--main-color);
     }
 
-    .notebooks-container {
-        max-height: 70%;
-        overflow-y: scroll;
+    .notebooks-list-container {
+        display: flex;
+        justify-content: center;
     }
+
+    .notebooks-list-items {
+        width: 790%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 11rem);
+        grid-gap: 2rem 1rem;
+        justify-content: space-between;
+    }
+
 </style>

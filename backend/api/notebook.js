@@ -68,7 +68,7 @@ module.exports = app => {
         }
     }
 
-    const notebookLimit = 7
+    const notebookLimit = 50
     const get = async (req, res) => {
         const page = req.query.page || 1
 
