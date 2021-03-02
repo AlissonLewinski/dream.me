@@ -12,10 +12,6 @@ export default {
 
 <style>
     .content {
-        padding: 45px 20px 20px 20px;
-        height: auto;
-
-        display: flex;
-        justify-content: center;
+        overflow-y: scroll;
     }
 </style>

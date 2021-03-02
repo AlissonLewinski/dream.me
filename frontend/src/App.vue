@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Header :hideUserDropdown="!user"></Header>
-    <Loading v-show="loading"></Loading>
-    <Content v-show="!loading" v-if="!isValidating"></Content>
+    <Menu :hideUserOptions="!user" />
+    <Loading v-show="loading" />
+    <Content v-show="!loading" v-if="!isValidating" />
   </div>
 </template>
 
@@ -10,19 +10,21 @@
 import axios from "axios";
 import { baseApiUrl, userKey } from "@/global.js";
 import { mapState } from "vuex";
-import Header from "./components/template/Header.vue";
+import Menu from "./components/template/Menu.vue";
 import Content from "./components/template/Content.vue";
 import Loading from "./components/template/Loading";
 
 export default {
   name: "App",
-  components: { Header, Content, Loading },
+  components: { Menu, Content, Loading },
   computed: mapState(["user", "loading"]),
+
   data: function () {
-    return {
-      isValidating: true,
-    };
+        return {
+            isValidating: true,
+        }
   },
+
   methods: {
     async validateToken() {
         this.isValidating = true;
@@ -50,6 +52,7 @@ export default {
         this.$store.commit("setLoading", false);
     },
   },
+
   created() {
     this.validateToken();
   },
@@ -61,18 +64,44 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 :root {
-  /*--main-color: #8600b3;*/
-  --main-color: #a70505;
-  --main-font: "Lobster", cursive;
-  --secondary-font: "Open Sans", sans-serif;
+    /*--main-color: #8600b3;*/
+    --main-color: #8257E6;
+    --white: #fff;
+    --red: #E83F5B;
+    --text: #2E384D;
+  
+    --main-font: "Inter", sans-serif;
+    --secondary-font: "Open Sans", sans-serif;
+}
+
+@media(max-width: 1080px) {
+    html {
+        font-size: 93.75%;
+    }
+}
+
+@media(max-width: 720px) {
+    html {
+        font-size: 87.5%;
+    }
 }
 
 body {
     margin: 0;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 #app {
     height: 100vh;
+
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    grid-auto-rows: 1fr;
+    grid-template-areas: 
+        'sidebar content';
 }
 
 .v-toast-text {

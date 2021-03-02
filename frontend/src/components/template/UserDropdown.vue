@@ -6,8 +6,8 @@
         </div>
 
         <div class="user-dropdown-options">
-            <DropdownLink name="Meus cadernos" path="/cadernos"/>
-            <DropdownLink name="Minha conta" path="/cadernos"/>
+            <MenuLink name="Meus cadernos" path="/cadernos"/>
+            <MenuLink name="Minha conta" path="/cadernos"/>
             <hr>
             <a @click.prevent="logout" class="dropdown-link">
                 Sair
@@ -19,11 +19,11 @@
 <script>
 import { userKey } from '@/global'
 import { mapState } from 'vuex'
-import DropdownLink from './DropdownLink.vue'
+import MenuLink from './MenuLink.vue'
 
 export default {
     name: 'UserDropdown',
-    components: {DropdownLink},
+    components: {MenuLink},
     computed: mapState(['user']),
     methods: {
         logout() {
