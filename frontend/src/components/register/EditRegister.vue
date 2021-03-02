@@ -1,15 +1,17 @@
 <template>
     <div class="edit-register-container">
 
-        <button @click="toggleVisibility" v-show="!isVisible" class="dm-btn">Editar Registro</button>
+        <button @click="toggleVisibility" v-show="!isVisible">
+            <img src="@/assets/edit.svg">
+        </button>
 
         <div v-show="isVisible" class="edit-register">
             <button @click="toggleVisibility" class="edit-register-close">
                 <img src="@/assets/close.svg" height="25" width="25" alt="Fechar">
             </button>
 
-            <label for="register-name">Título: </label>
-            <input v-model="register.title" id="register-name" type="text">
+            <label class="dm-label" for="register-name">Título: </label>
+            <input v-model="register.title" class="dm-input" id="register-name" type="text">
 
             <VueEditor :editorOptions="editorSettings" v-model="register.content" class="edit-register-editor" />
 
@@ -67,9 +69,23 @@ export default {
 <style>
 
     .edit-register-container {
-        margin: 20px 0px 20px 0px;
+        margin: 0px 0px 20px 0px;
         width: 900px;
         max-width: 95vw;
+    }
+
+    .edit-register-container > button {
+        padding: 0;
+        background: unset;
+        border: none;
+        outline: none;
+
+        cursor: pointer;
+    }
+
+    .edit-register-container > button img {
+        width: 2.4rem;
+        height: 2.4rem;
     }
 
     #register-name {

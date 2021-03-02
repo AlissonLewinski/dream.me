@@ -135,14 +135,14 @@ body {
     font-family: var(--main-font);
 }
 
-label {
-    font-size: 18px;
-    font-family: var(--main-font);
-    color: var(--main-color);
-}
-
 a {
     text-decoration: none;
+}
+
+.dm-label {
+    font-weight: 600;
+    font-family: var(--main-font);
+    color: var(--main-color);
 }
 
 .dm-btn {
@@ -152,7 +152,7 @@ a {
     color: white;
     border: none;
 
-    border-radius: 8px;
+    border-radius: 2px;
     outline: none;
     background-color: var(--main-color);
 
@@ -180,13 +180,13 @@ a {
 }
 
 .ql-toolbar {
-    border: solid 3px var(--main-color) !important;
+    border: solid 2px var(--main-color) !important;
 }
 
 .ql-container {
-    border-right: solid 3px var(--main-color) !important;
-    border-left: solid 3px var(--main-color) !important;
-    border-bottom: solid 3px var(--main-color) !important;
+    border-right: solid 2px var(--main-color) !important;
+    border-left: solid 2px var(--main-color) !important;
+    border-bottom: solid 2px var(--main-color) !important;
     overflow: hidden;
 }
 </style>

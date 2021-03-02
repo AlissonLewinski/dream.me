@@ -14,7 +14,7 @@
 
                 <h1>Editar caderno</h1>
 
-                <label for="name">Nome: </label>
+                <label class="dm-label" for="name">Nome: </label>
                 <input v-model="notebook.name" class="dm-input" type="text" id="name">
 
                 <div class="edit-notebook-icon">
@@ -141,11 +141,6 @@ export default {
         border-bottom: solid 1px var(--main-color);
         margin: 0 0 1rem 0;
         padding-bottom: 0.7rem;
-    }
-
-    .edit-notebook-modal-content label {
-        font-family: var(--main-font);
-        font-weight: 600;
     }
 
     .edit-notebook-modal-content input {

@@ -10,7 +10,7 @@
                     <img src="@/assets/close.svg" id="modal-close" height="25" width="25" alt="Fechar">
                 </button>
 
-                <label for="register-name">Título: </label>
+                <label class="dm-label" for="register-name">Título: </label>
                 <input v-model="register.title" class="dm-input" id="register-name" type="text">
 
                 <VueEditor :editorOptions="editorSettings" v-model="register.content" class="new-register-editor" />
@@ -99,10 +99,6 @@ export default {
 
     .new-register-modal-content {
         padding: 25px;
-    }
-
-    .new-register-modal-content label {
-        font-weight: 600;
     }
 
     #register-name {

@@ -44,7 +44,7 @@ export default {
     }
 
     .register-item:hover {
-        background-color: var(--white);;
+        background-color: var(--white);
     }
 
     .register-item > h2 {
@@ -54,7 +54,7 @@ export default {
         max-width: 100%;
         text-align: center;
 
-        font-weight: normal;
+        font-weight: 500;
         font-family: var(--main-font);
         color: var(--white);
     }

@@ -80,8 +80,7 @@ export default {
 
 <style>
     .notebooks-page-container {
-        height: 100%;
-        max-height: 100vh;
+        height: auto;
         width: 100vw;
         max-width: 1200px;
 
