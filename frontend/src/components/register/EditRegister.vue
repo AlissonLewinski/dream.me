@@ -24,7 +24,10 @@
 
                 <VueEditor :editorOptions="editorSettings" v-model="register.content" class="edit-register-editor" />
 
-                <button @click="save" class="dm-btn">Salvar</button>
+                <div class="new-register-modal-actions">
+                    <button @click="toggleModal" id="modal-close" class="dm-btn">Cancelar</button>
+                    <button @click="save" class="dm-btn">Salvar</button>
+                </div>
                 
             </div>
         </modal>
@@ -142,14 +145,6 @@ export default {
         border: solid 3px var(--main-color);
     }
 
-    .edit-register input {
-        width: 300px;
-    }
-
-    .edit-register-container .dm-btn {
-        width: 100%;
-    }
-
     .edit-register-close {
         position: absolute;
         right: 20px;
@@ -160,5 +155,20 @@ export default {
         border: none;
         outline: none;
         padding: 0;
+    }
+
+    .edit-register-modal-actions {
+        display: flex;
+        flex-direction: row;
+
+        justify-content: space-between;
+    }
+
+    .edit-register-modal-actions :first-child {
+        background-color: var(--red);
+    }
+
+    .edit-register-modal-actions :last-child {
+        background-color: var(--green);
     }
 </style>

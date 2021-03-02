@@ -32,7 +32,7 @@
 
                 <div class="edit-notebook-actions">
                     <button class="dm-btn" id="modal-close" @click="toggleModal">Cancelar</button>
-                    <button class="dm-btn" @click="saveNotebook">Enviar</button>
+                    <button class="dm-btn" @click="saveNotebook">Salvar</button>
                 </div>
             </div>
     
@@ -92,7 +92,7 @@ export default {
                     this.$modal.hide('edit-notebook-modal')
 
                     this.$toast.open({
-                        message: 'Caderno salvo com sucesso',
+                        message: 'Alterações salvas com sucesso',
                         position: 'top-right',
                         type: 'info',
                         duration: 4000

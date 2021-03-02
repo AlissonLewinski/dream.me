@@ -2,7 +2,9 @@
     <div>
         <button @click="toggleModal" id="modal-open" class="dm-btn new-register-open-button">Novo Registro</button>
 
-        <modal name="new-register-modal" :scrollable="true"  :adaptive="true" width="1200px" height="auto">
+        <modal name="new-register-modal" :scrollable="true"  :adaptive="true" width="1200px" height="auto"
+            @before-close="reset"
+        >
 
             <div class="new-register-modal-content">
 
@@ -15,7 +17,10 @@
 
                 <VueEditor :editorOptions="editorSettings" v-model="register.content" class="new-register-editor" />
 
-                <button @click="save" class="dm-btn">Salvar</button>
+                <div class="new-register-modal-actions">
+                    <button @click="toggleModal" id="modal-close" class="dm-btn">Cancelar</button>
+                    <button @click="save" class="dm-btn">Enviar</button>
+                </div>
                 
             </div>
         </modal>
@@ -149,5 +154,20 @@ export default {
         border: none;
         outline: none;
         padding: 0;
+    }
+
+    .new-register-modal-actions {
+        display: flex;
+        flex-direction: row;
+
+        justify-content: space-between;
+    }
+
+    .new-register-modal-actions :first-child {
+        background-color: var(--red);
+    }
+
+    .new-register-modal-actions :last-child {
+        background-color: var(--green);
     }
 </style>
