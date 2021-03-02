@@ -1,30 +1,41 @@
 <template>
     <div class="edit-register-container">
-
-        <button @click="toggleVisibility" v-show="!isVisible">
-            <img src="@/assets/edit.svg">
+        <button @click="toggleModal" id="modal-open" class="dm-btn edit-register-open-button">
+            <img src="@/assets/edit.svg" alt="Editar" id="modal-open">
         </button>
 
-        <div v-show="isVisible" class="edit-register">
-            <button @click="toggleVisibility" class="edit-register-close">
-                <img src="@/assets/close.svg" height="25" width="25" alt="Fechar">
-            </button>
+        <modal name="edit-register-modal" 
+            :scrollable="true"  
+            :adaptive="true" 
+            width="1200px" 
+            height="auto"
+            
+            @before-close="loadRegister"
+            >
 
-            <label class="dm-label" for="register-name">Título: </label>
-            <input v-model="register.title" class="dm-input" id="register-name" type="text">
+            <div class="edit-register-modal-content">
 
-            <VueEditor :editorOptions="editorSettings" v-model="register.content" class="edit-register-editor" />
+                <button @click="toggleModal" id="modal-close" class="edit-register-close">
+                    <img src="@/assets/close.svg" id="modal-close" height="25" width="25" alt="Fechar">
+                </button>
 
-            <button @click="save" class="dm-btn">Salvar</button>
-        </div>
+                <label class="dm-label" for="register-name">Título: </label>
+                <input v-model="register.title" class="dm-input" id="register-name" type="text">
+
+                <VueEditor :editorOptions="editorSettings" v-model="register.content" class="edit-register-editor" />
+
+                <button @click="save" class="dm-btn">Salvar</button>
+                
+            </div>
+        </modal>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
 import { VueEditor, Quill } from 'vue2-editor'
-import ImageResize from 'quill-image-resize-vue'
-import { baseApiUrl } from '@/global.js'
+import ImageResize from 'quill-image-resize-vue';
+import { baseApiUrl, showError } from '@/global.js'
 
 Quill.register("modules/imageResize", ImageResize)
 
@@ -34,7 +45,6 @@ export default {
     components: { VueEditor },
     data: function() {
         return {
-            isVisible: false,
             editorSettings: {
                 modules: {
                     imageResize: {},
@@ -43,22 +53,37 @@ export default {
         }
     },
     methods: {
-        toggleVisibility() {
-            this.isVisible = !this.isVisible
+        toggleModal(e) {
+            if(e.target.id === 'modal-close') {
+                this.$modal.hide('edit-register-modal')
+            } else {
+                this.$modal.show('edit-register-modal')
+            }
         },
-        
+
+        reset() {
+            this.register = {
+                title: '',
+                content: ''
+            }
+        },
+
         save() {
             this.$store.commit('setLoading', true)
             axios.put(`${baseApiUrl}/registers/${this.register.id}`, this.register)
                 .then(() => {
                     this.$store.commit('setLoading', false)
+                    this.$modal.hide('edit-register-modal')
                     this.$toast.open({
-                        message: 'Registro salvo com sucesso',
+                        message: 'Alterações salvas com sucesso',
                         position: 'top-right',
                         type: 'info',
                         duration: 4000
                     })
-                    this.isVisible = false
+                })
+                .catch(res => {
+                    showError(res)
+                    this.$store.commit('setLoading', false)
                 })
         }
     }
@@ -68,24 +93,23 @@ export default {
 
 <style>
 
-    .edit-register-container {
-        margin: 0px 0px 20px 0px;
-        width: 900px;
-        max-width: 95vw;
-    }
-
-    .edit-register-container > button {
-        padding: 0;
-        background: unset;
-        border: none;
-        outline: none;
-
-        cursor: pointer;
-    }
-
     .edit-register-container > button img {
         width: 2.4rem;
         height: 2.4rem;
+    }
+
+    .edit-register-container > button {
+        border-radius: 15px;
+
+        margin-left: 20px;
+        background-color: white;
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .edit-register-modal-content {
+        padding: 25px;
     }
 
     #register-name {
@@ -113,9 +137,8 @@ export default {
         }
     }
 
-    .edit-register {
-        position: relative;
-        padding: 20px;
+    [name="edit-register-modal"] {
+        padding: 20px 20px 0 20px;
         border: solid 3px var(--main-color);
     }
 

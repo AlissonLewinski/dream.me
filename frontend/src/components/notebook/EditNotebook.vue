@@ -4,7 +4,14 @@
             <img src="@/assets/edit.svg" width="30" height="30" alt="Editar">
         </button>
         
-        <modal name="edit-notebook-modal" :scrollable="true"  :adaptive="true" width="600px" height="auto">
+        <modal 
+            name="edit-notebook-modal"
+            :scrollable="true"
+            :adaptive="true"
+            width="600px"
+            height="auto"
+            
+            @before-close="loadRegisters">
 
             <div class="edit-notebook-modal-content">
 
@@ -41,7 +48,7 @@ import { baseApiUrl, showError } from '@/global'
 
 export default {
     name: 'EditNotebook',
-    props: { notebook: Object },
+    props: { notebook: Object, loadRegisters: Function },
     data: function() {
         return {
             oldNotebook: {}

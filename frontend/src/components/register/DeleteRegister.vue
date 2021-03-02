@@ -84,7 +84,7 @@ export default {
 
     .delete-register-container > button img {
         width: 2.4rem;
-        height: 2.rem;
+        height: 2.4rem;
     }
 
     .delete-register-container > button {

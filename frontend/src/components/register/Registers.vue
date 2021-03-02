@@ -6,7 +6,7 @@
                 <NotebookItem :notebook="notebook"/>
 
                 <div class="registers-notebook-item-edit">
-                    <EditNotebook :notebook="notebook"/>
+                    <EditNotebook :notebook="notebook" :loadRegisters="loadRegisters"/>
                     <DeleteNotebook :notebook="notebook"/>
                 </div>
             </div>

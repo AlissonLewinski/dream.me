@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="path" class="menu-link-container">
+    <router-link :to="path" :class="`menu-link-container${isActualLink ? ' menu-link-highlight' : ''}`">
         <img :src="icon" alt="">
     </router-link>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
     name: 'MenuLink',
-    props: {icon: String, path: String}
+    props: {icon: String, path: String, isActualLink: Boolean}
 }
 </script>
 
@@ -16,9 +16,6 @@ export default {
         cursor: pointer;
 
         width: 80%;
-
-        border-bottom: solid 0px var(--main-color);
-        border-radius: 2px;
         
         padding: 0.6rem 0;
         margin-bottom: 0.5rem;
@@ -26,6 +23,10 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .menu-link-highlight {
+        border-right: solid 2px var(--main-color);
     }
 
     .menu-link-container img {
@@ -41,6 +42,11 @@ export default {
         .menu-link-container {
             width: unset;
             margin: 0.5rem;
+        }
+
+        .menu-link-highlight {
+            border-right: none;
+            border-bottom: solid 2px var(--main-color);
         }
     }
 

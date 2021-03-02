@@ -1,13 +1,13 @@
 <template>
     <div class="register-by-id">
+
+        <h1>{{`${notebook.name || ''} - ${register.title || ''}`}}</h1>
+        <div class="register-content ql-editor" v-html="register.content"></div>
+        
         <div class="register-actions">
             <EditRegister :register="register" :loadRegister="loadRegister"/>
             <DeleteRegister :register="register" />
         </div>
-
-        <h1>{{`${notebook.name || ''} - ${register.title || ''}`}}</h1>
-        
-        <div class="register-content ql-editor" v-html="register.content"></div>
     </div>
 </template>
 
@@ -70,17 +70,18 @@ export default {
     }
 
     .register-actions {
+        margin-top: 3rem;
+
+        width: 100%;
+
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
 
     .register-content {
-        border-radius: 2px 15px 15px 2px;
-        margin-top: 20px;
-        box-sizing: border-box;
-        width: 900px;
-        max-width: 95vw;
+       margin-top: 20px;
+        width: 100%;
 
         font-family: var(--main-font);
         color: var(--text);

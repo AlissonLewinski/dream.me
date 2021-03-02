@@ -5,10 +5,10 @@
         </router-link>
 
         <div class="menu-links">
-            <MenuLink :icon="HomeIcon" path="/"/>
-            <MenuLink v-if="!hideUserOptions" :icon="NotebookIcon" path="/cadernos"/>
+            <MenuLink :icon="HomeIcon" path="/" :isActualLink="route === '/'"/>
+            <MenuLink v-if="!hideUserOptions" :icon="NotebookIcon" path="/cadernos" :isActualLink="route === '/cadernos'"/>
 
-            <MenuLink v-else :icon="EnterIcon" path="/entrar"/>
+            <MenuLink v-else :icon="EnterIcon" path="/entrar" :isActualLink="route === '/entrar'"/>
 
             <a v-if="!hideUserOptions" @click.prevent="logout" class="menu-link-container">
                 <img :src="LogoutIcon" alt="">
@@ -42,6 +42,11 @@ export default {
             HomeIcon,
             EnterIcon,
             LogoutIcon
+        }
+    },
+    computed: {
+        route() {
+            return this.$route.path
         }
     },
 
