@@ -96,6 +96,12 @@ export default {
         color: var(--main-color);
     }
 
+    @media(max-width: 335px) {
+        .notebooks-page-container > h1 {
+            text-align: center;
+        }
+    }
+
     .notebooks-list-container {
         display: flex;
         justify-content: center;

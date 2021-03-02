@@ -38,14 +38,13 @@ export default {
                 .then(res => {
                     this.$store.commit('setUser', res.data)
                     localStorage.setItem(userKey, JSON.stringify(res.data))
-                    this.$router.push({path: '/cadernos'})
+                    this.$router.push({path: '/'})
                 })
                 .catch(showError)
         },
         signup() {
             axios.post(`${baseApiUrl}/signup`, this.user)
                 .then(() => {
-                    this.$toasted.global.defaultSuccess()
                     this.$toast.open({
                         message: 'Cadastro realizado com sucesso',
                         position: 'top-right',
@@ -55,7 +54,9 @@ export default {
                     this.user = {}
                     this.showSignup = false
                 })
-                .catch(showError)
+                .catch(err => {
+                    console.log(err);
+                })
         }
     }
 }
@@ -68,6 +69,8 @@ export default {
         align-items: center;
 
         height: 100%;
+
+        padding: 0 0.5rem;
     }
 
     .auth-modal {
