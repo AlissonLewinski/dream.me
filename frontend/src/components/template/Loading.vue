@@ -1,9 +1,6 @@
 <template>
     <div class="loading loader">
-        <div class="ball-spin-fade-loader">
-            <div></div>
-            <div></div>
-            <div></div>
+        <div class="line-scale">
             <div></div>
             <div></div>
             <div></div>
@@ -27,7 +24,7 @@ export default {
         padding-top: 40vh;
     }
 
-    .ball-spin-fade-loader div {
+    .line-scale div {
         background-color: var(--main-color) !important;
     }
 </style>

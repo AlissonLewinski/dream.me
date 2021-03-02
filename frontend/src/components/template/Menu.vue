@@ -105,7 +105,6 @@ export default {
             width: 100%;
 
             flex-direction: row;
-            justify-content: space-between;
         }
 
         .menu-logo {
@@ -113,9 +112,12 @@ export default {
         }
 
         .menu-links {
-            flex: unset;
+            flex: 1;
             width: unset;
+
+            display: flex;
             flex-direction: row;
+            justify-content: flex-end;
 
             margin-right: 0.5rem;
         }

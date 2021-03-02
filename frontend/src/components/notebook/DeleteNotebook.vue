@@ -11,7 +11,7 @@
                     <img src="@/assets/close.svg" id="modal-close" height="25" width="25" alt="Fechar">
                 </button>
 
-                <PageTitle title="Remover Caderno?"/>
+                <h1>Remover Caderno?</h1>
                 <div class="delete-notebook-actions">
                     <button class="dm-btn" id="modal-close" @click="toggleModal">Não</button>
                     <button class="dm-btn" @click="deleteNotebook">Sim</button>
@@ -25,11 +25,9 @@
 import axios from 'axios'
 
 import { baseApiUrl, showError } from '@/global'
-import PageTitle from '../template/PageTitle.vue'
 
 export default {
     name: 'EditNotebook',
-    components: {PageTitle},
     props: { notebook: Object },
     methods: {
 
@@ -75,6 +73,16 @@ export default {
         flex-direction: column;
     }
 
+    .delete-notebook h1 {
+        font-family: var(--main-font);
+        font-weight: 600;
+        font-size: 1.5rem;
+        
+        color: var(--main-color);
+
+        text-align: center;
+    }
+
     .delete-notebook-open-button {
         border-radius: 15px;
 
@@ -94,5 +102,13 @@ export default {
 
     .delete-notebook-actions button {
         width: 80px;
+    }
+
+    .delete-notebook-actions :first-child {
+        background-color: var(--red);
+    }
+
+    .delete-notebook-actions :last-child {
+        background-color: var(--green);
     }
 </style>

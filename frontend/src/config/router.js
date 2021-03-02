@@ -5,6 +5,7 @@ import NotebooksByUser from '../components/notebook/NotebooksByUser.vue'
 import Registers from '../components/register/Registers.vue'
 import RegisterById from '../components/register/RegisterById.vue'
 import Auth from '../components/auth/Auth.vue'
+import Home from '../components/home/Home.vue'
 
 import { userKey } from '@/global'
 
@@ -30,6 +31,10 @@ const routes = [{
     path: '/entrar',
     component: Auth,
     meta: { requiresNotLogged: true }
+}, {
+    name: 'home',
+    path: '/',
+    component: Home
 }]
 
 const router = new VueRouter({

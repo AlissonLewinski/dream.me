@@ -6,24 +6,29 @@
         
         <modal name="edit-notebook-modal" :scrollable="true"  :adaptive="true" width="600px" height="auto">
 
-            <button @click="toggleModal" id="modal-close" class="modal-close-button">
-                <img src="@/assets/close.svg" id="modal-close" height="25" width="25" alt="Fechar">
-            </button>
+            <div class="edit-notebook-modal-content">
 
-            <PageTitle title="Editar Caderno"/>
-            <div class="edit-notebook">
-                <div class="edit-notebook-name">
-                    <label for="name">Nome: </label>
-                    <input v-model="notebook.name" type="text" id="name">
-                </div>
+                <button @click="toggleModal" id="modal-close" class="modal-close-button">
+                    <img src="@/assets/close.svg" id="modal-close" height="25" width="25" alt="Fechar">
+                </button>
+
+                <h1>Editar caderno</h1>
+
+                <label for="name">Nome: </label>
+                <input v-model="notebook.name" class="dm-input" type="text" id="name">
 
                 <div class="edit-notebook-icon">
                     <input @change="iconToBase64" v-show="false" type="file" accept="image/*">
                     <button class="dm-btn" @click="iconInputClick">Selecionar Ícone</button>
                     <img :src="notebook.icon" width="130">
                 </div>
-                <button class="dm-btn" @click="saveNotebook">Enviar</button>
+
+                <div class="edit-notebook-actions">
+                    <button class="dm-btn" id="modal-close" @click="toggleModal">Cancelar</button>
+                    <button class="dm-btn" @click="saveNotebook">Enviar</button>
+                </div>
             </div>
+    
         </modal>
     </div>
 </template>
@@ -33,17 +38,21 @@ import axios from 'axios'
 import {resize} from './ImageTools.js'
 
 import { baseApiUrl, showError } from '@/global'
-import PageTitle from '../template/PageTitle.vue'
 
 export default {
     name: 'EditNotebook',
-    components: {PageTitle},
     props: { notebook: Object },
-    methods: {
+    data: function() {
+        return {
+            oldNotebook: {}
+        }
+    },
 
+    methods: {
         toggleModal(e) {
             if(e.target.id === 'modal-close') {
                 this.$modal.hide('edit-notebook-modal')
+    
             } else {
                 this.$modal.show('edit-notebook-modal')
             }
@@ -117,14 +126,58 @@ export default {
         flex-direction: column;
     } 
 
+    .edit-notebook-modal-content {
+        padding: 1rem;
+    }
+
+    .edit-notebook-modal-content > h1 {
+        text-align: center;
+
+        color: var(--main-color);
+        font-family: var(--main-font);
+        font-weight: 600;
+        font-size: 1.8rem;
+
+        border-bottom: solid 1px var(--main-color);
+        margin: 0 0 1rem 0;
+        padding-bottom: 0.7rem;
+    }
+
+    .edit-notebook-modal-content label {
+        font-family: var(--main-font);
+        font-weight: 600;
+    }
+
+    .edit-notebook-modal-content input {
+        width: 100%;
+    }
+
     .edit-notebook-icon {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin: 1rem 0;
+    }
+    
+    .edit-notebook-icon button {
+        width: 100%;
     }
 
     .edit-notebook-icon img {
-        margin: 15px 0 15px 0;
+        margin-top: 1rem;
     } 
 
+    .edit-notebook-actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .edit-notebook-actions :first-child {
+        background-color: var(--red)
+    }
+
+    .edit-notebook-actions :last-child {
+        background-color: var(--green);
+    }
 </style>

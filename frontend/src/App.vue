@@ -69,7 +69,7 @@ export default {
     --white: #fff;
     --red: #E83F5B;
     --green: #4CD62B;
-    --text: #666666;
+    --text: #474747;
     --title: #2E384D;
   
     --main-font: "Inter", sans-serif;

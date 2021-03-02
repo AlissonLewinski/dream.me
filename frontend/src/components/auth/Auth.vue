@@ -3,9 +3,9 @@
         <div class="auth-modal">
             <div class="auth-title">{{ showSignup ? 'Cadastro' : 'Login' }}</div>
 
-            <input v-model="user.username" name="username" placeholder="Nome de usuário" type="text">
-            <input v-model="user.password" name="password" placeholder="Senha" type="password">
-            <input v-if="showSignup" v-model="user.confirmPassword" placeholder="Confirme a Senha" type="password">
+            <input v-model="user.username" class="dm-input" name="username" placeholder="Nome de usuário" type="text">
+            <input v-model="user.password" class="dm-input" name="password" placeholder="Senha" type="password">
+            <input v-if="showSignup" class="dm-input" v-model="user.confirmPassword" placeholder="Confirme a Senha" type="password">
         
             <button class="dm-btn" v-if="showSignup" @click="signup">Registrar</button>
             <button class="dm-btn" v-else @click="signin">Entrar</button>
@@ -65,13 +65,19 @@ export default {
     .auth-content {
         display: flex;
         justify-content: center;
+        align-items: center;
+
+        height: 100%;
     }
 
     .auth-modal {
         background-color: white;
-        width: 350px;
-        padding: 25px;
-        border: solid 3px var(--main-color);
+
+        width: 24rem;
+        padding: 1.4rem;
+        margin-bottom: 5rem;
+
+        border: solid 2px var(--main-color);
 
         display: flex;
         flex-direction: column;
@@ -82,7 +88,8 @@ export default {
         font-family: var(--main-font);
         color: var(--main-color);
         font-size: 1.4rem;
-        font-weight: 100;
+        font-weight: 600;
+
         margin-bottom: 15px;
     }
 
@@ -98,10 +105,13 @@ export default {
 
     .auth-modal a {
         margin-top: 15px;
-        font-size: 1.2rem;
+    
         text-decoration: none;
-        color: var(--main-color);
+        
+        font-size: 1.2rem;
+        font-weight: 600;
         font-family: var(--main-font);
+        color: var(--main-color);
     }
 
 </style>
