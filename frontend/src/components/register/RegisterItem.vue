@@ -1,8 +1,7 @@
 <template>
     <router-link class="register-item-link" :to="`/registros/${register.id}`">
         <div class="register-item">
-            <div class="register-item-circle"></div>
-            <h2 class="register-item-title">{{register.title}}</h2>
+            <h2>{{register.title}}</h2>
         </div>
     </router-link>
 </template>
@@ -25,37 +24,30 @@ export default {
 
 <style>
     .register-item-link {
-        max-width: 100%;
+        width: 100%;
+        margin: 0.2rem 0;
     }
 
     .register-item {
+        padding: 0 0.5rem;
+
         height: 40px;
         max-width: 100%;
+
         position: relative;
 
         display: flex;
         align-items: center;
-        border-bottom: solid 2px rgb(78, 76, 76);
 
+        background-color: var(--main-color);
+        transition: background-color 0.2s;
     }
 
     .register-item:hover {
-        background-color: #f8f7d1;;
+        background-color: var(--white);;
     }
 
-    .register-item-circle {
-        pointer-events: none;
-        position: absolute;
-        left: -37px;
-        bottom: -10.5px;
-
-        width: 20px;
-        height: 20px;
-        background-color: rgb(78, 76, 76);
-        border-radius: 0px;
-    }
-
-    .register-item-title {
+    .register-item > h2 {
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -64,7 +56,11 @@ export default {
 
         font-weight: normal;
         font-family: var(--main-font);
-        color: rgb(78, 76, 76);
+        color: var(--white);
+    }
+
+    .register-item:hover > h2 {
+        color: var(--title);
     }
 
     .register-close {

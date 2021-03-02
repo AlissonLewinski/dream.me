@@ -13,5 +13,6 @@ export default {
 <style>
     .content {
         overflow-y: scroll;
+        grid-area: content;
     }
 </style>

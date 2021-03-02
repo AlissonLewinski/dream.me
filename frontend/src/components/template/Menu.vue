@@ -57,6 +57,8 @@ export default {
 
 <style>
     .menu {
+        grid-area: menu;
+
         width: 7rem;
 
         background: var(--white);
@@ -95,5 +97,31 @@ export default {
         font-family: var(--main-font);
         font-size: 0.8rem;
         font-weight: 600;
+    }
+
+    @media(max-width: 1350px) {
+        .menu {
+            height: 7rem;
+            width: 100%;
+
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .menu-logo {
+            margin-left: 0.5rem;
+        }
+
+        .menu-links {
+            flex: unset;
+            width: unset;
+            flex-direction: row;
+
+            margin-right: 0.5rem;
+        }
+
+        .menu footer span {
+            display: none;
+        }
     }
 </style>

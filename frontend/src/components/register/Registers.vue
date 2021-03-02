@@ -119,39 +119,37 @@ export default {
 
 <style>
     .registers-container {
-        position: relative;
+        width: 100vw;
+        max-width: 1200px;
+
+        padding: 4rem 0.5rem;
+        margin: 0 auto;
+
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-bottom: 30px;
+        justify-content: center
     }
 
     .registers {
-        background-color: #FBFAE9;
-        border-radius: 2px 15px 15px 2px;
-        
-        padding: 10px 30px 35px 50px;
+        width: 100%;
 
-        box-sizing: border-box;
-        width: 1050px;
-        max-width: 95vw;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
     }
 
     .registers-notebooks-actions {
-        width: 98vw;
-        max-width: 1050px;
+        width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
         flex-wrap: wrap;
 
-        margin-bottom: 30px;
-        padding-bottom: 30px;
+        margin-bottom: 2em;
+        padding-bottom: 1rem;
 
         border-bottom: solid 2px var(--main-color);
     }
@@ -160,6 +158,8 @@ export default {
         display: flex;
         flex-direction: row;
         align-items: center;
+
+        margin-bottom: 1rem;
     }
 
     .registers-notebook-item-edit {

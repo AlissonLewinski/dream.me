@@ -6,7 +6,7 @@
             <div class="notebooks-list-items">
                 <NotebookItem v-for="nb in notebooks" :notebook="nb" :key="nb.id"/>
 
-                <SaveNotebook />
+                <SaveNotebook :loadNotebooks="loadNotebooks"/>
             </div>
         </section>
     </div>
@@ -99,6 +99,7 @@ export default {
     .notebooks-list-container {
         display: flex;
         justify-content: center;
+        align-items: center;
     }
 
     .notebooks-list-items {
@@ -106,7 +107,7 @@ export default {
         display: grid;
         grid-template-columns: repeat(auto-fill, 11rem);
         grid-gap: 2rem 1rem;
-        justify-content: space-between;
+        justify-content: center;
     }
 
 </style>

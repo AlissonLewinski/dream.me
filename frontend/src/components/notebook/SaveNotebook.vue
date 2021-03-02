@@ -104,6 +104,7 @@ export default {
                 .catch(res => {
                     this.$store.commit('setLoading', false)
                     showError(res)
+                    console.log(res);
                 })
         }
     }

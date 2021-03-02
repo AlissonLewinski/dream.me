@@ -103,7 +103,18 @@ body {
     grid-template-columns: 7rem 1fr;
     grid-auto-rows: 1fr;
     grid-template-areas: 
-        'sidebar content';
+        'menu content';
+}
+
+@media(max-width: 1350px) {
+    #app {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 7rem 1fr;
+        grid-template-areas: 
+            'menu'
+            'content';
+    }
+
 }
 
 .v-toast-text {
@@ -147,6 +158,13 @@ a {
 
     cursor: pointer;
     padding: 8px 4px 8px 4px;
+
+    transition: background-color 0.2s;
+}
+
+.dm-btn:hover {
+    background-color: var(--white) !important;
+    color: var(--title);
 }
 
 .modal-close-button {

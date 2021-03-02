@@ -37,4 +37,11 @@ export default {
         height: 3.3rem;
     }
 
+    @media(max-width: 1350px) {
+        .menu-link-container {
+            width: unset;
+            margin: 0.5rem;
+        }
+    }
+
 </style>
