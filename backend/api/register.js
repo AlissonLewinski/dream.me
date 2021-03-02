@@ -76,7 +76,7 @@ module.exports = app => {
             
         if(notebook) {
             await app.db('register')
-                    .where({id_notebook: notebook.id}).del()
+                    .where({id_notebook: notebook.id, id: req.params.id}).del()
         
         } else {
             return res.status(401).send('Unauthorized')
