@@ -1,12 +1,12 @@
 <template>
     <div class="home">
-        <h1>Bem vindo(a) ao <span>Dream.me</span></h1>
+        <h1>Bem vindo(a) ao <span>Dream.me</span>{{user ? `, ${user.username}` : ''}}</h1>
         <p>Aqui você pode salvar suas anotações sobre qualquer tema em diferentes cadernos :)</p>
 
         <img src="@/assets/notes.svg" alt="Notas">
 
         <div>
-            <router-link :to="isLogged ? '/cadernos' : '/entrar'">
+            <router-link :to="user ? '/cadernos' : '/entrar'">
                 <img src="@/assets/enter.svg" alt="">
             </router-link>
         </div>
@@ -14,17 +14,11 @@
 </template>
 
 <script>
-import { userKey } from '@/global'
+import { mapState } from "vuex";
 
 export default {
     name: 'Home',
-    computed: {
-        isLogged() {
-            const json = localStorage.getItem(userKey);
-
-            return !!json
-        }
-    }
+    computed: mapState(["user"])
 }
 </script>
 

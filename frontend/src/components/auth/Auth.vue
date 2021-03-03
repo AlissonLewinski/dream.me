@@ -34,17 +34,24 @@ export default {
     },
     methods: {
         signin() {
+            this.$store.commit("setLoading", true);
             axios.post(`${baseApiUrl}/signin`, this.user)
                 .then(res => {
                     this.$store.commit('setUser', res.data)
                     localStorage.setItem(userKey, JSON.stringify(res.data))
+                    this.$store.commit("setLoading", false);
                     this.$router.push({path: '/'})
                 })
-                .catch(showError)
+                .catch(err => {
+                    showError(err)
+                    this.$store.commit("setLoading", false);
+                })
         },
         signup() {
+            this.$store.commit("setLoading", true);
             axios.post(`${baseApiUrl}/signup`, this.user)
                 .then(() => {
+                    this.$store.commit("setLoading", false);
                     this.$toast.open({
                         message: 'Cadastro realizado com sucesso',
                         position: 'top-right',
@@ -55,7 +62,8 @@ export default {
                     this.showSignup = false
                 })
                 .catch(err => {
-                    console.log(err);
+                    showError(err)
+                    this.$store.commit("setLoading", false);
                 })
         }
     }

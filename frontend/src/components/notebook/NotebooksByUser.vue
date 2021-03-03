@@ -1,6 +1,7 @@
 <template>
     <div class="notebooks-page-container">
         <h1>Meus cadernos</h1>
+        <h3>{{user.username}}</h3>
 
         <section class="notebooks-list-container">
             <div class="notebooks-list-items">
@@ -14,6 +15,7 @@
 
 <script>
 import axios from 'axios'
+import { mapState } from "vuex";
 
 import { baseApiUrl } from '@/global.js'
 import NotebookItem from './NotebookItem.vue'
@@ -22,6 +24,7 @@ import SaveNotebook from './SaveNotebook.vue'
 export default {
     name: 'NotebooksByUser',
     components: {NotebookItem, SaveNotebook},
+    computed: mapState(["user"]),
     data: function() {
         return {
             notebooks: [],
@@ -94,6 +97,13 @@ export default {
         font-family: var(--main-font);
         color: var(--main-color);
     }
+    
+    .notebooks-page-container > h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        font-family: var(--main-font);
+        color: var(--main-color);
+    }
 
     @media(max-width: 335px) {
         .notebooks-page-container > h1 {
@@ -105,6 +115,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+
     }
 
     .notebooks-list-items {

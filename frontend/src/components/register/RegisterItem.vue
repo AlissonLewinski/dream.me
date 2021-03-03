@@ -39,6 +39,8 @@ export default {
         display: flex;
         align-items: center;
 
+        border-radius: 2px;
+        
         background-color: var(--main-color);
         transition: background-color 0.2s;
     }

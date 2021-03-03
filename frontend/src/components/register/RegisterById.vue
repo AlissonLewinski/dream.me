@@ -60,6 +60,7 @@ export default {
         flex-direction: column;
         align-items: center;
         padding-bottom: 20px;
+
     }
 
     .register-by-id > h1 {
@@ -80,7 +81,7 @@ export default {
     }
 
     .register-content {
-       margin-top: 20px;
+        margin-top: 20px;
         width: 100%;
 
         font-family: var(--main-font);
@@ -88,7 +89,7 @@ export default {
     }
 
     .register-content p {
-        line-height: 30px;
+        line-height: 1.6rem;
     }
 
     .register-content img {

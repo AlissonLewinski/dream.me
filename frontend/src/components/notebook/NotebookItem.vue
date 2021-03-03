@@ -28,6 +28,10 @@ export default {
     }
 
     .notebook-item-container > h2 {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
         position: absolute;
         bottom: 0.5rem;
 

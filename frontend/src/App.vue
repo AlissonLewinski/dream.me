@@ -15,15 +15,15 @@ import Content from "./components/template/Content.vue";
 import Loading from "./components/template/Loading";
 
 export default {
-  name: "App",
-  components: { Menu, Content, Loading },
-  computed: mapState(["user", "loading"]),
+    name: "App",
+    components: { Menu, Content, Loading },
+    computed: mapState(["user", "loading"]),
 
-  data: function () {
+    data: function () {
         return {
             isValidating: true,
         }
-  },
+    },
 
   methods: {
     async validateToken() {
@@ -123,6 +123,10 @@ body {
     font-weight: 600;
 }
 
+.v-toast-info {
+    background-color: var(--main-color) !important;
+}
+
 .dm-input {
     box-sizing: border-box;
 
@@ -189,4 +193,9 @@ a {
     border-bottom: solid 2px var(--main-color) !important;
     overflow: hidden;
 }
+
+.ql-container .ql-editor {
+    font-family: var(--main-font);
+}
+
 </style>
