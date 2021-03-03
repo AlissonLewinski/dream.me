@@ -13,6 +13,8 @@
 
 <script>
 import axios from 'axios'
+import 'highlightjs/styles/dracula.css'
+import hljs from 'highlightjs/highlight.pack.js'
 
 import { baseApiUrl } from '@/global.js'
 import EditRegister from './EditRegister.vue'
@@ -40,6 +42,11 @@ export default {
     },
     mounted() {
         this.loadRegister()
+    },
+    updated() {
+        document.querySelectorAll('.register-content pre').forEach(e => {
+            hljs.highlightBlock(e)
+        })
     }
 }
 </script>

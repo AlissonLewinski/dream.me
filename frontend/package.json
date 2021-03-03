@@ -11,6 +11,7 @@
     "axios": "0.21.1",
     "core-js": "^3.6.5",
     "loaders.css": "^0.1.2",
+    "highlightjs": "9.10.0",
     "quill-image-drop-module": "1.0.3",
     "quill-image-resize-module-fork-for-vue2-editor": "0.0.1",
     "quill-image-resize-vue": "1.0.4",
