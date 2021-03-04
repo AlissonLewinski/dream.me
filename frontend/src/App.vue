@@ -117,6 +117,16 @@ body {
 
 }
 
+::-moz-selection {
+  color: var(--white);
+  background: var(--main-color);
+}
+
+::selection {
+  color: var(--white);
+  background: var(--main-color);
+}
+
 .v-toast-text {
     font-size: 22px;
     font-family: var(--main-font);
